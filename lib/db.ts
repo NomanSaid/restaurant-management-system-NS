@@ -3,7 +3,7 @@ import clientPromise from "./mongodb"
 export async function getMenuItems() {
   try {
     const client = await clientPromise
-    const db = client.db("restaurant")
+    const db = client.db("rms")
     const menuItems = await db.collection("menuItems").find({}).toArray()
     return JSON.parse(JSON.stringify(menuItems))
   } catch (error) {
@@ -15,7 +15,7 @@ export async function getMenuItems() {
 export async function getOrders() {
   try {
     const client = await clientPromise
-    const db = client.db("restaurant")
+    const db = client.db("rms")
     const orders = await db.collection("orders").find({}).sort({ createdAt: -1 }).toArray()
     return JSON.parse(JSON.stringify(orders))
   } catch (error) {
@@ -27,7 +27,7 @@ export async function getOrders() {
 export async function getTables() {
   try {
     const client = await clientPromise
-    const db = client.db("restaurant")
+    const db = client.db("rms")
     const tables = await db.collection("tables").find({}).toArray()
     return JSON.parse(JSON.stringify(tables))
   } catch (error) {
@@ -39,7 +39,7 @@ export async function getTables() {
 export async function getInventoryItems() {
   try {
     const client = await clientPromise
-    const db = client.db("restaurant")
+    const db = client.db("rms")
     const inventory = await db.collection("inventory").find({}).toArray()
     return JSON.parse(JSON.stringify(inventory))
   } catch (error) {
@@ -51,7 +51,7 @@ export async function getInventoryItems() {
 export async function getSalesData() {
   try {
     const client = await clientPromise
-    const db = client.db("restaurant")
+    const db = client.db("rms")
     const sales = await db
       .collection("orders")
       .aggregate([
@@ -67,3 +67,4 @@ export async function getSalesData() {
     return []
   }
 }
+
